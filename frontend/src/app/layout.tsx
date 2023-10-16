@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/extensions
 import '@/styles/globals.css';
 import { TailwindIndicator } from '@/components/atoms/TailwindIndicator/TailwindIndicator';
 import { siteConfig } from '@/components/constants/site';
