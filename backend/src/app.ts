@@ -9,9 +9,6 @@ import { Container } from 'typedi';
 import path from 'node:path';
 import { ErrorMiddleware } from './middlewares/error.middleware';
 import { LoggerMiddleware } from './middlewares/logger.middleware';
-import { AuthService } from './services/auth.service';
-import { Errors } from './utils/api.util';
-import type { Request } from 'express';
 
 const app = express();
 
@@ -54,20 +51,7 @@ useExpressServer(app, {
         forbidUnknownValues: true,
         stopAtFirstError: true
     },
-    development: config.isDev,
-    currentUserChecker: async (action) => {
-        const req = action.request as Request;
-        const service = Container.get(AuthService);
-        const payload = await service.getUserPayload(req, 'access');
-        if (!payload) {
-            throw Errors.NO_SESSION;
-        }
-        return payload;
-    }
+    development: config.isDev
 });
-
-// app.use(cors(config.cors));
-// app.use(express.json());
-// app.use(handleLogging);
 
 export default app;

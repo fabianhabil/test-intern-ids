@@ -2,8 +2,8 @@
 import '@/styles/globals.css';
 import { TailwindIndicator } from '@/components/atoms/TailwindIndicator/TailwindIndicator';
 import { siteConfig } from '@/components/constants/site';
-import { ThemeProvider } from '@/components/theme-provider';
-import { fontSFPro } from '@/lib/fonts';
+import { Toaster } from '@/components/ui/toast/toaster';
+import { fontSans } from '@/lib/fonts';
 import { cn } from '@/lib/utils';
 import type { Metadata } from 'next';
 
@@ -34,21 +34,14 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <html lang='en' suppressHydrationWarning={true}>
                 <body
                     className={cn(
-                        'min-h-screen bg-background font-sfpro antialiased',
-                        fontSFPro.variable
+                        'font-sfpro min-h-screen antialiased',
+                        fontSans.className
                     )}
                     suppressHydrationWarning={true}
                 >
-                    <ThemeProvider
-                        attribute='class'
-                        defaultTheme='dark'
-                        enableSystem
-                    >
-                        <div className='container relative flex min-h-screen flex-col justify-center'>
-                            <div>{children}</div>
-                        </div>
-                        <TailwindIndicator />
-                    </ThemeProvider>
+                    <div>{children}</div>
+                    <TailwindIndicator />
+                    <Toaster />
                 </body>
             </html>
         </>

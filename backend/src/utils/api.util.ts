@@ -77,5 +77,9 @@ export const Errors = {
         StatusCodes.FORBIDDEN
     ),
 
-    USER_NOT_FOUND: new ResponseError('User not found', StatusCodes.NOT_FOUND)
+    ITEM_NOT_FOUND: new ResponseError('Item not found', StatusCodes.NOT_FOUND),
+    ITEM_EXISTS: new ResponseError(
+        'Item ID already exists',
+        StatusCodes.CONFLICT
+    )
 };
